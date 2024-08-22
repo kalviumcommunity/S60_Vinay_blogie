@@ -73,12 +73,11 @@ router.post("/otp", async (req, res) => {
       to: req.body.email,
       subject: "Your otp " + otp,
       html:
-        "<h1>Hey welcome</h1> <p>Here is your otp </p>" + `<h2> '${otp}'</h2>`,
+        "<h1>Hey welcome</h1> <p>Here is your otp</p>" + `<h2> '${otp}'</h2>`,
     };
     await transporter.sendMail(mailOptions);
     console.log("OTP sent");
-    const sotp=await bcrypt.hash(otp,10);
-    res.send(sotp);
+    res.send(otp);
   } catch (error) {
     console.error("Error sending OTP:", error);
     res.status(500).json({ message: "Internal Server Error" });
@@ -88,7 +87,7 @@ router.post("/otp", async (req, res) => {
 
 router.put("/otpvalid", async (req, res) => {
   try {
-    const otp = await bcrypt.hash(req.body.otp,10);
+    const otp = await req.body.otp;
     const hashedotp = req.body.valid;
     if (bcrypt.compare(otp,hashedotp)) {
       const update = await User.findOneAndUpdate(

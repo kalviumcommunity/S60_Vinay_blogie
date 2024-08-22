@@ -130,7 +130,7 @@ const Home = () => {
             </Link>
           </div>
         ) : (
-          blogs.map((blog) => (
+          blogs.slice().reverse().map((blog) => (
             <div className="blog" key={blog._id}>
               <div className='.blog-heading'>
                 <center>
@@ -138,9 +138,8 @@ const Home = () => {
                 </center>
               </div>
               <div className='blog-image'>
-                <center>
-                  <img src={blog.image} alt="" className="blog-image" />
-                </center>
+                  <img src={blog.image} alt="" className="blog-image1" />
+                  <img src={blog.image2} alt="" className='blog-image2' />
               </div>
               <div className="text">
                 <center>
