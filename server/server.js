@@ -88,7 +88,7 @@ app.delete("/delete/:id", (req,res) => {
 
 app.listen(process.env.PORT || 3001, async () => {
   await mongoose.connect(
-    "mongodb+srv://vinnugollakoti:123@cluster0.cwivpr4.mongodb.net/blogie?retryWrites=true&w=majority&appName=Cluster0"
+    "mongodb+srv://vinnugollakoti:vinnu1244@cluster0.cwivpr4.mongodb.net/blogie?retryWrites=true&w=majority&appName=Cluster0"
   );
   console.log("server is running");
 });
