@@ -15,7 +15,6 @@ const Update = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    // Fetch blog data for update
     axios
       .get(`http://localhost:3001/update/${id}`)
       .then((response) => {

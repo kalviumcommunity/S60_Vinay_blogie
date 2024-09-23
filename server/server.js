@@ -85,6 +85,10 @@ app.delete("/delete/:id", (req,res) => {
   .catch(err => res.json(err))
 })
 
+app.get("/",(req,res)=>{
+  res.send("i am alive bro!!")
+})
+
 
 app.listen(process.env.PORT || 3001, async () => {
   await mongoose.connect(
