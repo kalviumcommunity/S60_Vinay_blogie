@@ -20,7 +20,7 @@ const Register = () => {
     setLoading(true);
     setError('');
 
-    axios.post('http://localhost:3001/auth/signup', {
+    axios.post('https://s60-vinay-blogie.onrender.com/auth/signup', {
       username,
       email,
       password,

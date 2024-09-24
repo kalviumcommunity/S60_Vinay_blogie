@@ -5,7 +5,7 @@ const Authors = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3001/getdata")
+    axios.get("https://s60-vinay-blogie.onrender.com/getdata")
       .then((res) => {
         console.log(res.data);
         setData(res.data); 

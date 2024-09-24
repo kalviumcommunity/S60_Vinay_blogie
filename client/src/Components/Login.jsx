@@ -16,7 +16,7 @@ const Login = () => {
     setLoading(true);
     
     try {
-      const response = await axios.post("http://localhost:3001/auth/login", {
+      const response = await axios.post("https://s60-vinay-blogie.onrender.com/auth/login", {
         email,
         password,
       });
@@ -35,7 +35,7 @@ const Login = () => {
   function forgot(){
     setLoading(true)
     if (email){
-      axios.post("http://localhost:3001/auth/otp",{email}).then((res)=>{
+      axios.post("https://s60-vinay-blogie.onrender.com/auth/otp",{email}).then((res)=>{
         const otp=res.data
         sessionStorage.setItem("qed-et",otp)
         navigate("/forgotpass",{state:{email}})

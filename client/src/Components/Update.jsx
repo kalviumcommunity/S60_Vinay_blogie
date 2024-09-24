@@ -16,7 +16,7 @@ const Update = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/update/${id}`)
+      .get(`https://s60-vinay-blogie.onrender.com/update/${id}`)
       .then((response) => {
         const blogData = response.data;
         if (blogData) {

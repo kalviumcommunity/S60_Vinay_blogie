@@ -10,7 +10,7 @@ const Settings = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await axios.post(`http://localhost:3001/blog/${getCookie("username")}`);
+        const response = await axios.post(`https://s60-vinay-blogie.onrender.com/blog/${getCookie("username")}`);
         setBlogs(response.data);
         console.log(response.data); // Logging the received data for debugging
       } catch (error) {
@@ -22,7 +22,7 @@ const Settings = () => {
   }, []); 
 
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:3001/delete/${id}`)
+    axios.delete(`https://s60-vinay-blogie.onrender.com/delete/${id}`)
     .then(res => {
       console.log(res)
       window.location.reload()

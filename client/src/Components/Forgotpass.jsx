@@ -20,7 +20,7 @@ const OTPValidation = () => {
     console.log(otp)
     
     try {
-      const response = await axios.put("http://localhost:3001/auth/otpvalid", {
+      const response = await axios.put("https://s60-vinay-blogie.onrender.com/auth/otpvalid", {
         email,
         valid,
         otp,

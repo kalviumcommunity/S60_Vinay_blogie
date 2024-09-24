@@ -44,7 +44,7 @@ const Home = () => {
   }, [])
   useEffect(() => {
     axios
-    .get("http://localhost:3001/getdata")
+    .get("https://s60-vinay-blogie.onrender.com/getdata")
     .then((response) => {
       console.log(response.data)
       setBlogs(response.data)

@@ -11,7 +11,7 @@ dotenv.config()
 
 
 app.use(cors({
-  origin : "http://localhost:5173",
+  origin : ["http://localhost:5173","https://s60-vinay-blogie.onrender.com/"],
   credentials : true
 }));
 app.use(cookieParser())
@@ -56,7 +56,7 @@ app.get('/update/:id', (req, res) => {
 
 app.put('/update/:id', (req, res) => {
   const id = req.params.id;
-  const { author, email, heading, image, image2, blog } = req.body; // Extract values from req.body
+  const { author, email, heading, image, image2, blog } = req.body;2
 
   Data.findByIdAndUpdate(id, { author, email, heading, image, image2, blog })
     .then(user => {
