@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import logo2 from '../assets/logo2.png'
 import AccountDetails from "./Modal"
-import "./sample.css"
 
 const Home = () => {
   const [blogs, setBlogs] = useState([])
