@@ -11,7 +11,8 @@ dotenv.config()
 
 
 app.use(cors({
-  origin : "*",
+  origin : ["http://localhost:5173","https://s60-vinay-blogie.onrender.com/"],
+  credentials : true
 }));
 
 app.use(cookieParser())
