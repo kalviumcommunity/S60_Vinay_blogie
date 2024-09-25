@@ -1,7 +1,8 @@
 import logo2 from "../assets/logo2.png";
-import { useState } from 'react';
+import { useState, useTransition } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie'; // Import js-cookie
 
 axios.defaults.withCredentials = true;
 
@@ -9,6 +10,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false)
+  const [username, setUsername] = useState("")
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -20,16 +22,25 @@ const Login = () => {
         email,
         password,
       });
+    
       console.log(response);
-      navigate("/")
+      
+      // Access the username from the response
+      const { username, authToken } = response.data; // Adjust according to your response structure
+
+      Cookies.set('username', username, { expires: 1 });
+      Cookies.set('authToken', authToken,{ expires: 1 });
+    
+      navigate("/");
     } catch (error) {
       console.error("An error occurred during login:", error);
-      alert("Password incorrect !");
+      alert(error.message || "An error occurred during login");
     } finally {
       setTimeout(() => {
         setLoading(false);
       }, 1000);
     }
+    
   };
   
   function forgot(){

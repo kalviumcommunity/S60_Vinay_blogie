@@ -43,7 +43,7 @@ const Update = () => {
     e.preventDefault();
     // Update blog data
     axios
-      .put(`http://localhost:3001/update/${id}`, {
+      .put(`https://s60-vinay-blogie.onrender.com/update/${id}`, {
         author,
         email,
         heading,
