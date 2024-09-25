@@ -12,12 +12,15 @@ dotenv.config()
 
 app.use(cors({
   origin : ["http://localhost:5173","https://s60-vinay-blogie.onrender.com/", "https://blogie-1.netlify.app/"],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials : true
 }));
 
 app.use(cookieParser())
 app.use(express.json());
 app.use("/auth", UserRouter)
+app.options('*', cors());
 
 app.post("/data", async (req, res) => {
   const { author, email, heading, blog, image, image2 } = req.body;
