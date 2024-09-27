@@ -4,6 +4,7 @@ import profile from "../assets/profile.webp"
 import {Link} from "react-router-dom"
 import { getCookie } from "./Account"
 import Deletebtn from "./Deletebtn"
+import logo from '../assets/logo.png';
 const Settings = () => {
   const [blogs, setBlogs] = useState([])
 
@@ -29,10 +30,38 @@ const Settings = () => {
     })
     .catch(err => console.log(err))
   }
-  
 
   return (
-    <div className="settings-div">
+    <div className="main">
+      <nav>
+        <div className="div1">
+          <div className='mainlogodiv'>
+            <div>
+            <img src={logo} alt="Logo" className="logo-home" />
+            </div>
+           
+          </div>
+          <div className="div2">
+            <Link to="/" className="link">
+              <h3 className='nav-btn'>Home</h3>
+            </Link>
+            <Link to="/blog" className="link">
+              <h3 className='nav-btn'>Create a Blog</h3>
+            </Link>
+            <Link to="/about" className="link">
+              <h3 className='nav-btn'>About</h3>
+            </Link>
+            <Link to="/authors" className='link'>
+              <h3 className='nav-btn'>Authors</h3>
+            </Link>
+          
+            {/* <img src={profile} alt="" className='profile1' /> */}
+          
+          </div>
+          
+        </div>
+      </nav>
+        <div className="settings-div">
       <h1 className="settings">Settings</h1>
       <div className="settings-div1">
         <img src={profile} alt="" className="profile2" />
@@ -104,6 +133,7 @@ const Settings = () => {
         </div>
       ))}
       </center>
+    </div>
     </div>
   )
 }
