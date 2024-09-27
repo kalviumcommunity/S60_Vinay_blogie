@@ -3,17 +3,25 @@ const bcrypt = require("bcrypt");
 const { User } = require("../models/User.js");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
-const nodemailer = require("nodemailer");
 const dotenv = require("dotenv")
+const nodemailer = require("nodemailer");
 const otpGenerator = require("otp-generator");
 
 
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "blogiepost@gmail.com",
+    pass: "vuvmzygkwombzvur",
+  },
+});
 
 router.post("/signup", async (req, res) => {
   const { username, email, password } = req.body;
   console.log(req.body)
   try {
-    const user = await User.findOne({ email:email });
+    const user = await User.findOne({ email: email });
     if (user) {
       return res.status(400).json({ message: "User already exists" });
     }
@@ -24,6 +32,14 @@ router.post("/signup", async (req, res) => {
       password: hashPassword,
     });
     await newUser.save();
+    var mailOptions = {
+      from: "blogiepost@gmail.com",
+      to: req.body.email,
+      subject: "Welcome to Blogie!",
+      html:
+        `<h1>Hey ${username}, welcome to blogie</h1>`,
+    };
+    await transporter.sendMail(mailOptions);
     return res.json({ status: true, message: "User registered successfully" });
   } catch (error) {
     console.error("Error registering user:", error);
@@ -36,7 +52,7 @@ router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ email });
     console.log(user);
-    
+
     if (!user) {
       return res.status(400).json({ message: "User is not registered" });
     }
@@ -70,14 +86,6 @@ router.post("/login", async (req, res) => {
   }
 });
 
-
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "blogiepost@gmail.com",
-    pass: "vuvmzygkwombzvur",
-  },
-});
 router.post("/otp", async (req, res) => {
   try {
     const otp = otpGenerator.generate(6, {
@@ -106,10 +114,10 @@ router.put("/otpvalid", async (req, res) => {
   try {
     const otp = await req.body.otp;
     const hashedotp = req.body.valid;
-    if (bcrypt.compare(otp,hashedotp)) {
+    if (bcrypt.compare(otp, hashedotp)) {
       const update = await User.findOneAndUpdate(
         { email: req.body.email },
-        { password: await bcrypt.hash(req.body.password,10) }
+        { password: await bcrypt.hash(req.body.password, 10) }
       );
       if (!update) {
         res.status(404).send("User not in database");
