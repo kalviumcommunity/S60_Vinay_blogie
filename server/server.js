@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser")
 const {UserRouter} = require("./routes/routes.js");
 const User = require("./models/User.js");
 const app = express();
+const cron = require('node-cron');
 dotenv.config()
 
 app.use(cors({
@@ -19,6 +20,26 @@ app.use(cors({
 app.use(cookieParser())
 app.use(express.json());
 app.use("/auth", UserRouter)
+
+function setupCronJob() {
+  const renderAPIUrl = "https://s60-vinay-blogie.onrender.com";
+
+  cron.schedule('*/10 * * * *', async () => {
+    const currentTime = new Date().toLocaleString();
+    try {
+      const response = await axios.get(renderAPIUrl);
+      console.log(
+        `Pinged Render API at ${currentTime}: Status ${response.status}`
+      );
+    } catch (error) {
+      console.error(
+        `Failed to ping Render API at ${currentTime}: ${error.message}`
+      );
+    }
+  });
+
+  console.log('Cron jobs is ready!');
+}
 
 app.post("/data", async (req, res) => {
   const { author, email, heading, blog, image, image2 } = req.body;
@@ -35,9 +56,7 @@ app.post("/data", async (req, res) => {
 });
 app.post("/blog/:username",async (req,res)=>{
   const username=req.params.username
-  // console.log(username)
   const blogs=await Data.find({author:username})
-  // console.log(blogs)
   res.send(blogs)
 })
 
@@ -96,5 +115,6 @@ app.listen(process.env.PORT || 3001, async () => {
   await mongoose.connect(
     "mongodb+srv://vinnugollakoti:vinnu1244@cluster0.cwivpr4.mongodb.net/blogie?retryWrites=true&w=majority&appName=Cluster0"
   );
+  setupCronJob();
   console.log("server is running");
 });
