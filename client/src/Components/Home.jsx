@@ -73,7 +73,7 @@ const Home = () => {
       <nav>
         <div className="div1">
           <div className='mainlogodiv'>
-            <div>
+            <div className='logo-div'>
             <img src={logo} alt="Logo" className="logo-home" />
             </div>
             <div className='dates'>
@@ -88,6 +88,19 @@ const Home = () => {
             <Link to="/blog" className="link">
               <h3 className='nav-btn'>Create a Blog</h3>
             </Link>
+            <div>
+            <a
+              href="https://www.buymeacoffee.com/blogie"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
+                alt="Buy Me A Coffee"
+                style={{ height: '40px', width: '157px', marginTop:"5px" }}
+              />
+            </a>
+            </div>
             <Link to="/about" className="link">
               <h3 className='nav-btn'>About</h3>
             </Link>
@@ -139,9 +152,12 @@ const Home = () => {
               </div>
               <br />
               <div className='blog-image'>
-                  <img src={blog.image} alt="" className="blog-image1" style={{ width: '260px' , borderRadius: "10px"}} />
-                  <img src={blog.image2} alt="" className='blog-image2' style={{ width: '260px' , borderRadius: "10px" }} />
-              </div>
+                <img src={blog.image} alt="" className="blog-image1" style={{ width: '260px', borderRadius: "10px" }} />
+                {blog.image2.length > 0 && (
+                    <img src={blog.image2} alt="" className='blog-image2' style={{ width: '260px', borderRadius: "10px" }} />
+                )}
+            </div>
+
               <div className="text">
                 <center>
                   <p>{blog.blog}</p>

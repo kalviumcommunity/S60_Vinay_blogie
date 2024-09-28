@@ -32,10 +32,10 @@ nav {
   justify-content: space-between;
 }
 .div2 {
-  width: 40%;
-  padding: 1.7%;
+  width: 55%;
+  padding: 1%;
   padding-right: 2.7%;
-  padding-top: 2%;
+  padding-top: 1%;
 }
 .div22 {
   width: 13%;
@@ -70,11 +70,15 @@ nav {
   display: flex;
   justify-content: space-around;
   width: 20%;
+  align-items: center;
 }
 .logo-home {
   width: 45%;
   padding-left: 10%;
   padding-top: 2%;
+}
+.logo-div {
+  height: fit-content;
 }
 input {
   text-align: center;
@@ -148,7 +152,10 @@ textarea:hover {
   width: 30%;
 }
 .dates {
-  padding-top: 1%;
+  margin-top: 3%;
+}
+.date, .time {
+  width: 240%;
 }
 .oops {
   padding-top: 3%;
