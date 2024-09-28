@@ -103,6 +103,7 @@ const Home = () => {
                 <h3 className='nav-btn'>Login</h3>
               </Link>
             )}
+            
             {/* <img src={profile} alt="" className='profile1' /> */}
             <AccountDetails/>
           </div>
@@ -136,9 +137,10 @@ const Home = () => {
                   <h2>{blog.heading}</h2>
                 </center>
               </div>
+              <br />
               <div className='blog-image'>
-                  <img src={blog.image} alt="" className="blog-image1" />
-                  <img src={blog.image2} alt="" className='blog-image2' />
+                  <img src={blog.image} alt="" className="blog-image1" style={{ width: '260px' , borderRadius: "10px"}} />
+                  <img src={blog.image2} alt="" className='blog-image2' style={{ width: '260px' , borderRadius: "10px" }} />
               </div>
               <div className="text">
                 <center>

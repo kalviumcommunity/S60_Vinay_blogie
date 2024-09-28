@@ -245,6 +245,11 @@ input {
   margin-top: 4%;
   position: relative;
 }
+.blog-image {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
 
 /* btn styles */
 .btn-12,
